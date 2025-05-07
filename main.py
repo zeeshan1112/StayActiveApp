@@ -57,9 +57,9 @@ class StayActiveApp(rumps.App):
         # Create menu items for starting and stopping the activity
         self.start_item = rumps.MenuItem("Start", callback=self.start_clicked)
         self.stop_item = rumps.MenuItem("Stop", callback=self.stop_clicked)
-
+        self.license_item = rumps.MenuItem("About StayActiveApp", callback=self.show_license)
         # Define the application menu
-        self.menu = [self.start_item, self.stop_item, None]
+        self.menu = [self.start_item, self.stop_item, None, self.license_item]
 
         # Use a timer to ensure the 'Stop' item is disabled after the menu is built.
         # This addresses a potential race condition or initialization order issue.
@@ -133,6 +133,12 @@ class StayActiveApp(rumps.App):
             logging.info("Mouse movement stopped and menu updated.")
         else:
             logging.warning("Attempted to stop when already stopped.")
+
+    @rumps.clicked("About StayActiveApp")
+    def show_license(self, _):
+        import subprocess
+        subprocess.Popen(["python3", os.path.join(os.path.dirname(__file__), "license_viewer.py")])
+
 
 if __name__ == "__main__":
     """

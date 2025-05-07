@@ -6,6 +6,7 @@ OPTIONS = {
     'iconfile': 'icon.png',
     'packages': ['rumps', 'Quartz'],
     'includes': ['imp'],
+    'resources': ['LICENSE.txt', 'icon.png'],
     'plist': {
         'CFBundleName': 'StayActive',
         'CFBundleDisplayName': 'StayActive',
